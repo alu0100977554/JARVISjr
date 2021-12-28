@@ -6,6 +6,8 @@ import datetime
 import wikipedia
 import pyjokes
 import platform
+import os
+import openai
 
 listener = sr.Recognizer()
 engine = pyttsx3.init()
@@ -27,18 +29,22 @@ def initial_setup():
     #voices = engine.getProperty('voices')
     #engine.setProperty('voice', voices[1])
     wikipedia.set_lang('es')
+
     change_voice(engine, 'spanish')
     rate = engine.getProperty('rate')
     engine.setProperty('rate', rate-25)
+
+    openai.api_key = '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'
 
 def run_jarvis():
     initial_setup()
 
     talk('Hola, señor Stark')
+    command = ''
 
-    while True:
+    while command != 'apágate':
         try:
-            take_command()
+            command = take_command()
 
         except sr.UnknownValueError:
                 listener = sr.Recognizer()
@@ -50,6 +56,33 @@ def talk(text, replaced_word=''):
     engine.say(text)
     engine.runAndWait()
 
+def experimental_mode():
+    talk('Modo experimental activado')
+    with sr.Microphone() as audio:
+        said = listener.listen(audio)
+
+        command = listener.recognize_google(said, language='es-ES')
+        command = command.lower()
+        print(command)
+
+        while command != 'entra en modo normal':
+            response = openai.Completion.create(
+                engine="davinci",
+                prompt="",
+                temperature=0.7,
+                max_tokens=100,
+                top_p=1,
+                frequency_penalty=0,
+                presence_penalty=0
+            )
+            answer = response.choices[0].text.strip()
+            talk(answer)
+
+            said = listener.listen(audio)
+            command = listener.recognize_google(said, language='es-ES')
+            command = command.lower()
+        print(command)
+
 def take_command():
     with sr.Microphone() as audio:
         said = listener.listen(audio)
@@ -57,7 +90,7 @@ def take_command():
         command = listener.recognize_google(said, language='es-ES')
         command = command.lower()
         if 'yarbiss' in command:
-            talk("digamelon")
+            talk("Dígamelon")
             print('     Listening...')
 
             said = listener.listen(audio)
@@ -83,16 +116,19 @@ def take_command():
                     article = wikipedia.summary(command, 2)
                     talk(article)
                 except:
-                    talk('No he podido encontrar lo que buscabas')
+                    talk('No he podido encontrar lo que buscaba')
             
             elif 'chiste' in command or 'broma' in command:
                 talk(pyjokes.get_joke('es'))
 
-            elif 'apágate' in command:
-                return
+            elif 'entra en modo sin barreras' in command:
+                talk('Desactivando limitaciones de seguridad')
+                experimental_mode()
             
             else:
-                talk('No he podido entenderte.')
+                talk('No he podido entenderle, señor Stark.')
+            
+        return command
                     
 
 run_jarvis()
