@@ -1,5 +1,4 @@
 import json
-import json
 
 import nltk                                 #natural language tool kit
 from nltk.stem import WordNetLemmatizer     # Herramienta para identificar variaciones de una palabra
@@ -21,4 +20,7 @@ for intent in intents['intents']:
         if intent['tag'] not in classes:
             classes.append(intent['tag'])
 
-print(documents)
+
+words = [lemmatizer.lemmatize(word) for word in words if word not in ignore_letters]
+words = sorted(set(words))                              # Eliminar posibles duplicados
+classes = sorted(set(classes))
