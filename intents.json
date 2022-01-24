@@ -1,0 +1,21 @@
+{"intents": [
+    {"tag": "bienvenida",
+    "patterns": ["hola", "ey", "qué tal", "buenos días", "buenas tardes", "saludos"],
+    "responses": ["hola", "ey", "qué tal", "buenos días", "buenas tardes", "saludos", "¿En qué puedo ayudarle?"]
+    },
+    {"tag": "despedida",
+    "patterns": ["adiós", "hasta luego", "nos vemos", "hasta pronto"],
+    "responses": ["adiós", "hasta luego", "nos vemos", "hasta pronto"]
+    },
+    {"tag": "informacion",
+    "patterns": ["qué eres", "quién eres"],
+    "responses": ["Soy JARVIS-Jr, un chatbot desarrollado para la asignaturas de Sistemas Inteligentes"]
+    },
+    {"tag": "creadores",
+    "patterns": ["quién te creó", "quiénes te crearon", "tus creadores", "quién te desarrolló"],
+    "responses": ["Mis creadores son Mario Pérez Luna y Pablo Gil de San Nicolás, dos alumnos de Ingeniería de Computadores de la UPM"]
+    },
+    {"tag": "funcionalidades",
+    "patterns": ["qué puedes hacer", " tus funcionalidades"],
+    "responses": ["Puedo buscar múltiples cosas en Internet, buscar vídeos en Youtube, decirle la hora, contar algún que otro chiste y mantener una conversación. Bueno, todavía estoy aprendiendo esto último"]}
+]}
