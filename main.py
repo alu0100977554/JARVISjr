@@ -81,7 +81,7 @@ def experimental_mode():
             said = listener.listen(audio)
             command = listener.recognize_google(said, language='es-ES')
             command = command.lower()
-        print(command)
+            print(command)
 
 def take_command():
     with sr.Microphone() as audio:
@@ -109,7 +109,7 @@ def take_command():
                 time = datetime.datetime.now().strftime('%H:%M')
                 talk('Son las ' + time)
 
-            elif 'qué' in command or 'quién' in command:
+            elif 'qué es' in command or 'quién' in command:
                 command = command.replace('qué', '')
                 command = command.replace('quién', '')
                 try:
