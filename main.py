@@ -6,13 +6,10 @@ import datetime
 import wikipedia
 import pyjokes
 import platform
-import os
 import openai
 
 listener = sr.Recognizer()
 engine = pyttsx3.init()
-
-clear_f = 'clear'
 
 def change_voice(engine, language, gender='male'):
     for voice in engine.getProperty('voices'):
@@ -23,8 +20,6 @@ def change_voice(engine, language, gender='male'):
     raise RuntimeError("Language '{}' for gender '{}' not found".format(language, gender))
 
 def initial_setup():
-    if platform.system() == 'Windows':
-        clear_f = 'cls'
 
     #voices = engine.getProperty('voices')
     #engine.setProperty('voice', voices[1])
