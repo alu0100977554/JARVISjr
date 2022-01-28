@@ -5,8 +5,9 @@ import pywhatkit
 import datetime
 import wikipedia
 import pyjokes
-import platform
 import openai
+
+import chatbot
 
 listener = sr.Recognizer()
 engine = pyttsx3.init()
@@ -122,6 +123,11 @@ def take_command():
             
             else:
                 talk('No he podido entenderle, señor Stark.')
+        
+        else:
+            ints = chatbot.predict_class(command)
+            res = chatbot.get_response(ints)
+            talk(res)
             
         return command
                     

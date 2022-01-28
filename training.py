@@ -35,7 +35,7 @@ words = sorted(set(words))                              # Eliminar posibles dupl
 classes = sorted(set(classes))
 
 pickle.dump(words, open('words.pkl', 'wb'))
-pickle.dump(words, open('classes.pkl', 'wb'))
+pickle.dump(classes, open('classes.pkl', 'wb'))
 # El siguiente paso consiste en asignar valores numéricos a cada palabra,
 # para que la red neuronal pueda realizar las operaciones correspondientes
 
@@ -70,6 +70,6 @@ model.add(Dense(len(training_y[0]), activation='softmax'))                 # nº
 sgd = SGD(learning_rate=0.01, decay=1e-6, momentum=0.9, nesterov=True)                #Optimizer
 model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 
-model.fit(np.array(training_x), np.array(training_y), epochs=200, batch_size=5, verbose=1)
-model.save('chatbot_model.model')
+hist = model.fit(np.array(training_x), np.array(training_y), epochs=200, batch_size=5, verbose=1)
+model.save('chatbot_model.model', hist)
 print("Done")
