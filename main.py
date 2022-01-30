@@ -30,7 +30,7 @@ def initial_setup():
     rate = engine.getProperty('rate')
     engine.setProperty('rate', rate-25)
 
-    openai.api_key = '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'
+    openai.api_key = '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'
 
 def run_jarvis():
     initial_setup()
@@ -121,6 +121,9 @@ def take_command():
                 talk('Desactivando limitaciones de seguridad')
                 experimental_mode()
             
+            elif 'apágate':
+                talk("Apagando el sistema")
+                
             else:
                 talk('No he podido entenderle, señor Stark.')
         
