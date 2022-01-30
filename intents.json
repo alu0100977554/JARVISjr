@@ -8,7 +8,7 @@
     "responses": ["adiós", "hasta luego", "nos vemos", "hasta pronto"]
     },
     {"tag": "informacion",
-    "patterns": ["qué eres", "quién eres"],
+    "patterns": ["qué eres", "quién eres", "información"],
     "responses": ["Soy JARVIS-Jr, un chatbot desarrollado para la asignaturas de Sistemas Inteligentes"]
     },
     {"tag": "creadores",
@@ -16,6 +16,6 @@
     "responses": ["Mis creadores son Mario Pérez Luna y Pablo Gil de San Nicolás, dos alumnos de Ingeniería de Computadores de la UPM"]
     },
     {"tag": "funcionalidades",
-    "patterns": ["qué puedes hacer", " tus funcionalidades"],
+    "patterns": ["qué puedes hacer", " tus funcionalidades", "características"],
     "responses": ["Puedo buscar múltiples cosas en Internet, buscar vídeos en Youtube, decirle la hora, contar algún que otro chiste y mantener una conversación. Bueno, todavía estoy aprendiendo esto último"]}
 ]}
